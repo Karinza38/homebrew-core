@@ -593,6 +593,7 @@ cpufetch
 cpuid
 cql-proxy
 crabz
+cracklib
 crane
 crates-tui
 cri-tools
@@ -1103,6 +1104,7 @@ git-delta
 git-extras
 git-filter-repo
 git-grab
+git-ignore
 git-interactive-rebase-tool
 git-lfs
 git-machete
@@ -1283,6 +1285,7 @@ hackrf
 hadoop
 halide
 halp
+hamlib
 hapi-fhir-cli
 haproxy
 haproxy@2.8
@@ -1343,6 +1346,7 @@ httpyac
 hubble
 huggingface-cli
 hugo
+humanlog
 hut
 hwatch
 hwloc
@@ -1603,6 +1607,7 @@ latino
 lazydocker
 lbdb
 lc0
+lcm
 lcov
 ld-find-code-refs
 ldc
@@ -1659,6 +1664,7 @@ libdpp
 libdrm
 libedit
 libepoxy
+libesedb
 libetonyek
 libewf
 libfabric
@@ -1793,6 +1799,7 @@ libvatek
 libvirt
 libvirt-python
 libvisio
+libvncserver
 libwbxml
 libwpe
 libx11
@@ -2114,6 +2121,7 @@ netaddr
 nethogs
 netlify-cli
 nettle
+neverest
 newman
 newrelic-cli
 newrelic-infra-agent
@@ -2323,6 +2331,7 @@ pango
 pangomm
 papilo
 parallel
+parallel-disk-usage
 parallel-hashmap
 parca
 pari
@@ -2356,6 +2365,7 @@ pdns
 pdnsrec
 pedump
 pegtl
+percona-toolkit
 percona-xtrabackup
 perl
 perltidy
@@ -2412,6 +2422,7 @@ pkg-config-wrapper
 pkgconf
 pkl
 plantuml
+planus
 platformio
 plow
 pluto
@@ -2634,6 +2645,7 @@ rhit
 riemann
 riemann-client
 rio
+rip2
 ripsecrets
 risor
 river
@@ -2911,6 +2923,7 @@ stanc3
 stanford-corenlp
 star
 starlark-rust
+static-web-server
 staticcheck
 statix
 stdman
@@ -2959,6 +2972,7 @@ svtplay-dl
 swagger-codegen
 swagger-codegen@2
 swagger2markup-cli
+swctl
 swi-prolog
 swift-protobuf
 swift-sh
@@ -3057,6 +3071,7 @@ tfsec
 tfupdate
 tgui
 thanos
+the-way
 theharvester
 thrift
 thriftgo
@@ -3254,6 +3269,7 @@ vte3
 vtk
 vue-cli
 vulkan-extensionlayer
+vulkan-validationlayers
 vulkan-volk
 vulsio-gost
 vultr

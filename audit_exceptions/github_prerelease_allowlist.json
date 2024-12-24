@@ -6,6 +6,7 @@
   "grt": "0.2.4",
   "joshuto": "all",
   "lha": "all",
+  "libesedb": "20240420",
   "polynote": "all",
   "thrift@0.9": "all"
 }
