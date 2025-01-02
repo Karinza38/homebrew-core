@@ -288,7 +288,7 @@
   },
   "dvc": {
     "package_name": "dvc[all]",
-    "exclude_packages": ["certifi", "cryptography", "numpy"]
+    "exclude_packages": ["certifi", "cryptography", "numpy", "pygit2"]
   },
   "dxpy": {
     "exclude_packages": ["cryptography", "certifi"]
@@ -436,6 +436,9 @@
   "huggingface-cli": {
     "exclude_packages": ["certifi"]
   },
+  "icloudpd": {
+    "exclude_packages": ["certifi"]
+  },
   "iconsur": {
     "package_name": "",
     "extra_packages": ["pyobjc-core", "pyobjc-framework-cocoa"]
@@ -492,6 +495,9 @@
   },
   "linode-cli": {
     "exclude_packages": ["certifi"]
+  },
+  "literate-git": {
+    "exclude_packages": ["pygit2"]
   },
   "liquidctl": {
     "exclude_packages": ["pillow"]
@@ -788,6 +794,9 @@
   },
   "shodan": {
     "exclude_packages": ["certifi"]
+  },
+  "showcert": {
+    "exclude_packages": ["certifi", "cryptography"]
   },
   "shub": {
     "exclude_packages": ["certifi"]

@@ -2,22 +2,18 @@ class Periscope < Formula
   desc "Organize and de-duplicate your files without losing data"
   homepage "https://github.com/anishathalye/periscope"
   url "https://github.com/anishathalye/periscope.git",
-      tag:      "v0.3.5",
-      revision: "b4eb74e389a3bb4eb6a4225e9bccd8744203b895"
+      tag:      "v1.0.0",
+      revision: "3d398cb7c9d8e41690c54371861d1b0a0119c485"
   license "GPL-3.0-only"
   head "https://github.com/anishathalye/periscope.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia:  "ab01d2a319b29ac06a55323a47b3b7b336123add4050abdbf1d616e97a79cc97"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "95317b64f7df0f4097e72d44efbb4660f1efa74fd1903e79820f734a83b23738"
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "1814d4eb64988e0cc57a7766b0696c55ded99437a3558d60764f2c85b5e1cc53"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "4e2100139c6388a7954e002f8c40415b01bf5538e266ce057d2635771a2e85f5"
-    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "50a953e087342698678e7d6f91f1b0efff98ccb25dde5896f210f073def24e41"
-    sha256 cellar: :any_skip_relocation, sonoma:         "61becf54c83893ae5db8a69198e97e56b868e1d36af3405307a6fe5571c0b847"
-    sha256 cellar: :any_skip_relocation, ventura:        "e71b0d0433581720f9578bd744886f365683a40eda9315e01a5ceb925cc75d02"
-    sha256 cellar: :any_skip_relocation, monterey:       "3e2b016f5a54f9a6706ecce39590612016763ca8a28cb362736b943b4d18d7f4"
-    sha256 cellar: :any_skip_relocation, big_sur:        "52c225ce532478e5e002ac925312006dc0d6a29ca96ce04a1953df796728ad31"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "99f72d97940f3463403ab50742b48f2a7c325a761cbb278c500c9fe77c07991e"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "9640cda5271196d7ae0b4ec8fd4aac56378bf70a89529dcae21995c9bb53ab36"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "b2c4e1a39fe80211258e6269f9ad212d261519b223e89f1f0f93f84c64f18d00"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "1d3a14af2b8bbc5def8dc556de099ddb30f2c4f129743ddfde14226af0f2397a"
+    sha256 cellar: :any_skip_relocation, sonoma:        "9a2d6787de19316613a10a7c2e1cc921047575b031ac6363e2dadf9425e91ca5"
+    sha256 cellar: :any_skip_relocation, ventura:       "2eef76919c4d079f13b3f67dc36c45e24b64daced55875b33d3537fdaee34c9c"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "730c36044c98b82acf32c59bb4137e3b572970e0b8bd0d05198f8bd24d79ac83"
   end
 
   depends_on "go" => :build
@@ -30,7 +26,7 @@ class Periscope < Formula
     ]
     system "go", "build", *std_go_args(output: bin/"psc", ldflags:), "./cmd/psc"
 
-    generate_completions_from_executable(bin/"psc", "completion", base_name: "psc")
+    generate_completions_from_executable(bin/"psc", "completion")
   end
 
   test do

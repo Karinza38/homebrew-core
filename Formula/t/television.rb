@@ -1,18 +1,18 @@
 class Television < Formula
   desc "General purpose fuzzy finder TUI"
   homepage "https://github.com/alexpasmantier/television"
-  url "https://github.com/alexpasmantier/television/archive/refs/tags/0.7.1.tar.gz"
-  sha256 "18b1590003c065813d2726cc835ae4a33c5ce0bd9de6255dfad0e6e9bb759169"
+  url "https://github.com/alexpasmantier/television/archive/refs/tags/0.8.6.tar.gz"
+  sha256 "ff76862f8fdd5473337ef783e74c377b8bf65eba7e4a437832793a4442b310b4"
   license "MIT"
   head "https://github.com/alexpasmantier/television.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "ef486e1173101d34aa755b08bae05fab86fbdc7d5605623f658b074e9af364d9"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "395098a3708d7871ba7db24dc4dfd67bc28d7df610c946793c2e8b53149514a5"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "c0210f88bf5e6d01fb9cd66acde8e1573805ceedf5cd4070e9c5bf6ae0ae566b"
-    sha256 cellar: :any_skip_relocation, sonoma:        "ffeef2811d87218906242ad976477e9c7d44ba237d56689d01275ff89892b2b7"
-    sha256 cellar: :any_skip_relocation, ventura:       "81b7e5aff92530b27d05d622be345a0fdd642ab1daf47c09524df04fe7bbc097"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "b92d8a20e4eaa66e22d059c7ee4d8d8ea0310e3cedfce514925dc8e6f5049250"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "350554fdd98129bbb8ca4cd3302afa193571123e71f838fd78165c19ea621bb1"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "a5d1d9902effd631f3f447b37a3573a1886f628852a020e4f70fd8021ad37d16"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "3d18636bd2df627837c7c4f7b3fd70ac3da8e1141a00788b7cf3fdc95093b83b"
+    sha256 cellar: :any_skip_relocation, sonoma:        "d7fd4262e68cc847ba9a2bcf9547eb1e8ee887a25ae8c5bdb70375393e22cf9b"
+    sha256 cellar: :any_skip_relocation, ventura:       "065e25d8083d0a5760b78525d2ab92b649d6800f3f6dbb58b3bbeda0826bf3b8"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "69dae24aea3ae3a57f63e702da26ae82e8f37c361a66a109edc416a86fe9687c"
   end
 
   depends_on "rust" => :build
@@ -26,16 +26,7 @@ class Television < Formula
   test do
     assert_match version.to_s, shell_output("#{bin}/tv -V")
 
-    return if OS.linux? && ENV["HOMEBREW_GITHUB_ACTIONS"]
-
-    begin
-      output_log = testpath/"output.log"
-      pid = spawn bin/"tv", [:out, :err] => output_log.to_s
-      sleep 2
-      assert_match "Preview", output_log.read
-    ensure
-      Process.kill("TERM", pid)
-      Process.wait(pid)
-    end
+    output = shell_output("#{bin}/tv list-channels")
+    assert_match "Builtin channels", output
   end
 end

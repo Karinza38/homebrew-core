@@ -1,19 +1,17 @@
 class XmlrpcC < Formula
   desc "Lightweight RPC library (based on XML and HTTP)"
   homepage "https://xmlrpc-c.sourceforge.io/"
-  url "https://downloads.sourceforge.net/project/xmlrpc-c/Xmlrpc-c%20Super%20Stable/1.59.03/xmlrpc-c-1.59.03.tgz"
-  sha256 "bdb71db42ab0be51591555885d11682b044c1034d4a3296401bf921ec0b233fe"
+  url "https://downloads.sourceforge.net/project/xmlrpc-c/Xmlrpc-c%20Super%20Stable/1.60.04/xmlrpc-c-1.60.04.tgz"
+  sha256 "1e98cc6f524142c2b80731778fe8c74458936118bf95ae33cfa1e9205bfd48a5"
   license "BSD-3-Clause"
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia:  "c50dd6bf5c7a278e7b7046bb4fc4c714f376e1ece6d2a2f6b9dc567b2591cbcf"
-    sha256 cellar: :any,                 arm64_sonoma:   "a37de64bbd2ff69db08d29c18be9061c383273fb7a2f4c437bcc97609b2d921d"
-    sha256 cellar: :any,                 arm64_ventura:  "6acfdb7a4974c9dd956b9395b78f0acc1b669e877b23ad6e8acdf162477d86f7"
-    sha256 cellar: :any,                 arm64_monterey: "f81cd7a5a3abc242fda56cf730a27007bec239731168e72cc89711e3f16e5a16"
-    sha256 cellar: :any,                 sonoma:         "dac86be0a0f288eea63ecf9657bf6fdb89a1873dab3b415946b34d61b6640995"
-    sha256 cellar: :any,                 ventura:        "7b6cc04921933e9e7a36eb8bc0ca36f7a1f67e2259385c462424a5f61fefe2ff"
-    sha256 cellar: :any,                 monterey:       "2289714e60026a5ed0645aafed98f02dade60bb6884af5412362c5a3ef271779"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "cdbcf2578d239e21752a3f06e0df6d0e27f26e83376536ecd16e62b9b8edfc5e"
+    sha256 cellar: :any,                 arm64_sequoia: "efb676599d96e83aeed7ba9922566f44f519c10f5f66273c7ebc315175a98c16"
+    sha256 cellar: :any,                 arm64_sonoma:  "0847e1244a99ae5fd4247292564a328f88930e95604a2f6517ee4a801b48e582"
+    sha256 cellar: :any,                 arm64_ventura: "a8d5697528386ec5cfa99be464e03b579d6ab002735b5fcc248ba52e1fdd0c69"
+    sha256 cellar: :any,                 sonoma:        "a88ab300059fd024ebaa5b1e3c72b217abea7935af952ff39f307e4f1da2853a"
+    sha256 cellar: :any,                 ventura:       "363da2d59bccb2be0263443addf0e8ad998efb73c77c08a18f6e38abb42ca283"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "5ee21bfb6bff30d28aa9f0401ebbdc38825bc0fadaaaa147eb2977f4441df4b1"
   end
 
   depends_on "pkgconf" => :build

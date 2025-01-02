@@ -1,17 +1,17 @@
 class Rtorrent < Formula
   desc "Ncurses BitTorrent client based on libtorrent-rakshasa"
   homepage "https://github.com/rakshasa/rtorrent"
-  url "https://github.com/rakshasa/rtorrent/releases/download/v0.10.0/rtorrent-0.10.0.tar.gz"
-  sha256 "cc65bba7abead24151f10af116eca2342b0c320fdff3cb8d604c0af09215d3aa"
+  url "https://github.com/rakshasa/rtorrent/releases/download/v0.15.1/rtorrent-0.15.1.tar.gz"
+  sha256 "1d5437d7a6828f2f72a6c309f25f136eda1be69b059d250bc52e0d4185420506"
   license "GPL-2.0-or-later"
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "4ff4cdfea0262578387a2bd2104e7f0caab74ad85853b9558b62c2bc5e7fbb64"
-    sha256 cellar: :any,                 arm64_sonoma:  "7817e20a46918a4013d357c5d7d73a28f0173ebb1cb5b7c8672b7c92b05c0b7d"
-    sha256 cellar: :any,                 arm64_ventura: "653b6b2302dff61a612e18f8d48fbe79ac8d9d3797b0025b31097964c648a91b"
-    sha256 cellar: :any,                 sonoma:        "9f3eca223df05e8dd831e6ba42bd6bc900e5289d7f76fca37b491dc1cf3dd1b3"
-    sha256 cellar: :any,                 ventura:       "c74da101ca3e057601ff89d00cfe1d5dcb9e95cae0487483d5c1e6cb1f274b9b"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "1f59d9720aa571fe2d1b44637fa114cca245154452bb7fd52a50c972b1572093"
+    sha256 cellar: :any,                 arm64_sequoia: "e7fd8876fa905a4e5c0048075d04a061fb28147e727eecfd4b80ce994c96d885"
+    sha256 cellar: :any,                 arm64_sonoma:  "a67c258fef8075692db56f63c63eada71a8fc5b66c513762953457f074530149"
+    sha256 cellar: :any,                 arm64_ventura: "acc2ee7afe587f3ed97e379cd2ad238af586483d3783571d2a6fea90a2eaaf3d"
+    sha256 cellar: :any,                 sonoma:        "48e01478a36cdcdff32d78a2effa418e00b3ce838cdb02b092bdd26729c873ef"
+    sha256 cellar: :any,                 ventura:       "5f269d47486ddc79fe24ece2dff35cbe16abd3a3210dc899abd64c682b352fe3"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "2107b8aeefe50f463128299c7a26549f060c85e788dfdbd4b55020cb8f45f24a"
   end
 
   depends_on "autoconf" => :build
@@ -25,12 +25,6 @@ class Rtorrent < Formula
 
   uses_from_macos "curl"
   uses_from_macos "ncurses"
-
-  # patch to use fsync for osx builds, upstream pr ref, https://github.com/rakshasa/rtorrent/pull/1297
-  patch do
-    url "https://github.com/rakshasa/rtorrent/commit/ad491b46ede1593dc28120231b87051530f5b391.patch?full_index=1"
-    sha256 "5242ccb5e85a40860d3928f3264d5579976717d071bdb228960eab8926396a69"
-  end
 
   def install
     system "autoreconf", "--force", "--install", "--verbose"

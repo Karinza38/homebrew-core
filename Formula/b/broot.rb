@@ -1,19 +1,18 @@
 class Broot < Formula
   desc "New way to see and navigate directory trees"
   homepage "https://dystroy.org/broot/"
-  url "https://github.com/Canop/broot/archive/refs/tags/v1.44.2.tar.gz"
-  sha256 "e1b78354c21680914a07ed4b856257c83ef873b878ef281bd2d1aed7fcba3828"
+  url "https://github.com/Canop/broot/archive/refs/tags/v1.44.5.tar.gz"
+  sha256 "b8e46fc99c0444bdb7a13c674901cdccc7af7c3c2ee54fde1c901ce517885a47"
   license "MIT"
   head "https://github.com/Canop/broot.git", branch: "master"
 
   bottle do
-    rebuild 1
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "ad3b7b701b0d0b24cc9868bc4e1e575aa89c04be18d8d5907ecd8ee94ef7605c"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "861a3871c40abad90cfcf69d9d5e2c309113382c6c876b76d2266ca2eb8979f5"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "f541d2cbce0674f7231d2d9df8653380eaee426d8a9454ffd42fe69bd78fc34c"
-    sha256 cellar: :any_skip_relocation, sonoma:        "3378be3f1a9c154a8365ffece2f9e867c152df69de7c7c9e0a2361b4d87e021a"
-    sha256 cellar: :any_skip_relocation, ventura:       "582e0964024cb156b9debc17cc4cf6e28ce1b2ed14d556fcef5adddc3f7dc45e"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "5350a104f339cc705cfbd07bf5d76b58f80d27ec799a8909a6eebd81c3e2faa8"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "22f26bfd9b51c7160b837e8576c8febcb596f7aef3e2abdbf978d95069226250"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "6640d8ad9fcc9a79ec2611bbf9bcc5a278fe77623eeba87d79f5e38f3edd4aef"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "91e781e3abaa63a5a84b247bc744df1095ad85d90c12d58a1fe95dc7fca62d0b"
+    sha256 cellar: :any_skip_relocation, sonoma:        "edd1f0a2570ed892dcd1c75fa7b15d1860eef657c669516aeaec3155f509798b"
+    sha256 cellar: :any_skip_relocation, ventura:       "001ad15a67b686ce1ade72d9ac4e97dbdebecb75dd591846f9a0959a3e68d235"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "f6d94788d972fdb68d729afd62814b1c80de0df8f2dedf560a264130350feeda"
   end
 
   depends_on "rust" => :build

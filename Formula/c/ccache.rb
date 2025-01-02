@@ -4,18 +4,16 @@ class Ccache < Formula
   url "https://github.com/ccache/ccache/releases/download/v4.10.2/ccache-4.10.2.tar.xz"
   sha256 "c0b85ddfc1a3e77b105ec9ada2d24aad617fa0b447c6a94d55890972810f0f5a"
   license "GPL-3.0-or-later"
-  revision 1
+  revision 3
   head "https://github.com/ccache/ccache.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia:  "f89e12a721fd48ed3dcfcc3eff8287ba0c1998dda77dab5a29da49611f24d473"
-    sha256 cellar: :any,                 arm64_sonoma:   "99a4fa919beefde392d18a2584582573c1da1846a235dd1cb263143ff6d1b7cb"
-    sha256 cellar: :any,                 arm64_ventura:  "64ddf5e321d706fc72217b93e1006fce74bd0455d44fbbf1be19d03f9dcd9655"
-    sha256 cellar: :any,                 arm64_monterey: "b5e4df60ea8300de0ab06b6c3b59369b8ace64a1da2da40805209b4d1b3dfe87"
-    sha256 cellar: :any,                 sonoma:         "06b08542eecffb366c3c92547b4dc74727378346ee05485753e3a2ce5a25b1c4"
-    sha256 cellar: :any,                 ventura:        "ca55f014f52d722b07f810b676c8e676982d890fe0c19720c5b0802214fa47f2"
-    sha256 cellar: :any,                 monterey:       "888607766d5d61abd954078cb35bfca250a70b9b1af98f7927fe3336569de616"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "953cd675e8cbb8359f6dbc6436017dbb58c71ee14ee2764946f833d9a8015225"
+    sha256 cellar: :any, arm64_sequoia: "1637e115c7ad8076b28d4390668cb53ba62dd0212b63ea04651ae5f1dd8fd6e8"
+    sha256 cellar: :any, arm64_sonoma:  "87b642aef800b89a2c9b3d5b42c29d11460712dbe0191b35bec0c9866a58d3fb"
+    sha256 cellar: :any, arm64_ventura: "5d8db605c9242c99c0f59a84aef01913d92def6ace4ea7f86fd2f6aaac384ee0"
+    sha256               sonoma:        "ecf556f969e1862e016805662661e2abb54313adbd79721715e04203bd857c5b"
+    sha256               ventura:       "dc2fb6d9b4c9afdc86c94752c1da42e0c92e2a7bf6a6469fffb45af91d28e34e"
+    sha256               x86_64_linux:  "f68fec802336b5c30194b627a06b0fc06bbda4459d2f88beab863766910c950f"
   end
 
   depends_on "asciidoctor" => :build
@@ -33,6 +31,7 @@ class Ccache < Formula
 
   def install
     system "cmake", "-S", ".", "-B", "build",
+                    "-DCMAKE_INSTALL_SYSCONFDIR=#{etc}",
                     "-DENABLE_IPO=TRUE",
                     "-DREDIS_STORAGE_BACKEND=ON",
                     "-DDEPS=LOCAL",
@@ -90,6 +89,39 @@ class Ccache < Formula
   test do
     ENV.prepend_path "PATH", opt_libexec
     assert_equal "#{opt_libexec}/gcc", shell_output("which gcc").chomp
-    system bin/"ccache", "-s"
+    assert_match etc.to_s, shell_output("#{bin}/ccache --show-stats --verbose")
+
+    # Calling `--help` can catch issues with fmt upgrades.
+    # https://github.com/orgs/Homebrew/discussions/5830
+    system bin/"ccache", "--help"
+
+    (testpath/"test.c").write <<~C
+      #include <stdio.h>
+      int main(void) {
+        printf("hello, world");
+        return 0;
+      }
+    C
+
+    # Test that we link with xxhash correctly.
+    assert_equal "6ef4b356229ca145dca726e94e88ad10", shell_output("#{bin}/ccache --checksum-file test.c").chomp
+    # Test that we link with blake3 correctly.
+    file_hash = shell_output("#{bin}/ccache --hash-file test.c").chomp
+    assert_equal "5af3d23skapbcgbs975geemfqv6r6utsu", file_hash
+
+    system bin/"ccache", ENV.cc, "-c", "test.c"
+    system bin/"ccache", "debug=true", ENV.cc, "-c", "test.c"
+
+    input_text = testpath.glob("test.o.*.ccache-input-text").first.read
+    assert_match File.basename(ENV.cc), input_text
+    assert_match "test.c", input_text
+    assert_match file_hash, input_text
+
+    # The format of the log file seems to differ on Linux.
+    # It's not clear how to make the assertion below work for it.
+    return unless OS.mac?
+
+    log = testpath.glob("test.o.*.ccache-log").first
+    assert_match "cache hit", log.read
   end
 end

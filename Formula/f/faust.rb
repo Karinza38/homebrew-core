@@ -1,10 +1,9 @@
 class Faust < Formula
   desc "Functional programming language for real time signal processing"
   homepage "https://faust.grame.fr"
-  url "https://github.com/grame-cncm/faust/releases/download/2.72.14/faust-2.72.14.tar.gz"
-  sha256 "dcd5aaf263c59d34c385e65c4f4c5b85b0e9435e57cbfd79bb67a01e5780acf0"
+  url "https://github.com/grame-cncm/faust/releases/download/2.77.3/faust-2.77.3.tar.gz"
+  sha256 "3685348ba2482547fc7675b345caea490ff380814c5dcabc8a5f772682617c0e"
   license "GPL-2.0-or-later"
-  revision 2
 
   # Upstream creates releases that use a stable tag (e.g., `v1.2.3`) but are
   # labeled as "pre-release" on GitHub before the version is released, so it's
@@ -15,18 +14,20 @@ class Faust < Formula
   end
 
   bottle do
-    sha256 cellar: :any, arm64_sequoia: "7722859fde12c41f92196bcc9b4925cb69f4b5455b5c65714cbfa8ad329d4f2a"
-    sha256 cellar: :any, arm64_sonoma:  "7e80c8851f8d42da0e709a35c3da65ec70c230c875a8e09cc4436ca4d840d6d4"
-    sha256 cellar: :any, arm64_ventura: "fe765dd3e97eba9c63b943c65db2ae9a11a79ebe2cd1dd01c02daaf54be5d2d6"
-    sha256 cellar: :any, sonoma:        "5138e86243892021eb49290bb60fd4d095c6c8852551aee39859224b91ff575a"
-    sha256 cellar: :any, ventura:       "16e35bfd4838ac328996ddf5d44bb674961af25b5328c1869faf60f87cdf91d2"
+    rebuild 1
+    sha256 cellar: :any,                 arm64_sequoia: "72afaf325ad50d677fa9741080501a3ea25e71f3413e1495434a0427544bb7b4"
+    sha256 cellar: :any,                 arm64_sonoma:  "d556688303764f6645d20301a1a47669e337240a12ca715d7702c97016577411"
+    sha256 cellar: :any,                 arm64_ventura: "4bd907b439c79eb53981e3f83fd168527eaf4955b25c0246ab7bfd5275a10ce0"
+    sha256 cellar: :any,                 sonoma:        "c297a021412fd064f8d790b19d6da9f08edbcd752e760cc2f1ab4affe8396ed2"
+    sha256 cellar: :any,                 ventura:       "bd3dbd54042efc8a83f64cec75325e8fb21f944bd51d684141306a59768cb323"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "40d93a0c90132426d4087657e4ba77c64f47c180ca4dc08ea748e36f5e64a5d3"
   end
 
   depends_on "cmake" => :build
   depends_on "pkgconf" => :build
   depends_on "libmicrohttpd"
   depends_on "libsndfile"
-  depends_on "llvm@18"
+  depends_on "llvm"
 
   def install
     system "cmake", "-S", "build", "-B", "homebrew_build",
@@ -56,6 +57,7 @@ class Faust < Formula
                     "-DHTTPDYNAMIC=ON",
                     "-DINCLUDE_ITP=OFF",
                     "-DITPDYNAMIC=ON",
+                    "-DLINK_LLVM_STATIC=OFF",
                     *std_cmake_args
     system "cmake", "--build", "homebrew_build"
     system "cmake", "--install", "homebrew_build"
